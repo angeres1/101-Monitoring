@@ -10,7 +10,7 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 
 # === 1. Load variables from .env ===
-load_dotenv("/app/PSM-Squad/.env")
+load_dotenv("/app/monitoring/.env")
 openai_api_key = os.getenv("OPENAI_API_KEY")
 smtp_user = os.getenv("EMAIL_USER")
 smtp_password = os.getenv("EMAIL_PASSWORD")
@@ -29,7 +29,7 @@ logging.info("")
 logging.info("===== 🕒 New Daily Execution: %s =====", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 # === 3. Load the original report ===
-file_path = "/app/PSM-Squad/lxc_status_report.txt"
+file_path = "/app/lxc-reports/lxc_status_report.txt"
 if not os.path.exists(file_path):
     logging.error("🚫 Report file not found. Email skipped.")
     exit(1)
