@@ -188,7 +188,8 @@ chain = prompt_template | llm
 raw_status = raw_status.encode("utf-8", "replace").decode("utf-8")
 cert_section = cert_section.encode("utf-8", "replace").decode("utf-8")
 
-html_summary = chain.invoke({"raw_status": raw_status, "cert_section": cert_section}).content
+full_input = raw_status + "\n\n" + cert_section
+html_summary = chain.invoke({"raw_status": full_input}).content
 
 logging.info("\u2705 Summary generated.")
 
