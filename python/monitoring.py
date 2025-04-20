@@ -58,6 +58,24 @@ You are a Linux systems assistant. Analyze the provided Proxmox LXC container re
 
 4.	System Temperatures: Show the temperature of the CPU, HDD, and GPU in a table format:
     | Component | Temperature | Celsius | Is it OK? (If so, green, then red) |
+    Take into consideration the following thresholds:
+    CPU:
+    - 35-55°C: Idle - Typical for well-ventilated systems.
+    - 70-85°C: Under Load - Normal under sustained CPU use.
+    - 85-95°C: Hot - Acceptable short bursts, but monitor.
+    - 95-100°C: Critical - May trigger thermal throttling or shutdown.
+    
+    GPU:
+    - 30-50°C: Idle - Normal desktop state.
+    - 60-80°C: Gamming/Load - Normal under load.
+    - 80-90°C: High - Still safe, but worth watching.
+    - >90°C: Critical - Thermal throttling starts around 92 and 95°C.
+
+    HDD:
+    - 30-45°C: Idle - Cool and normal.
+    - 45-70°C: Under Load - Acceptable during read/write bursts.
+    - >70°C: High - Might reduce performance (thermal throttle).
+    - >85°C: Critical - Risk of degradation over time.                                 
 
 Ensure the final output is a clean, readable HTML document with inline styles for table formatting. Avoid external CSS or JavaScript.
 
