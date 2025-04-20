@@ -41,49 +41,98 @@ with open(file_path, "r") as f:
 os.environ["OPENAI_API_KEY"] = openai_api_key  # Make it compatible with LangChain
 
 prompt_template = PromptTemplate.from_template("""
-                                               
-You are a Linux systems assistant. Analyze the provided Proxmox LXC container report and generate an HTML summary page with the following specifications:
-                                               
-	•	The page title must be “PSM Server Report Summary”.
-	•	Use clean, valid HTML with basic inline CSS styling for readability (e.g., table borders, padding, bold headers).
-	•	Structure the HTML content with the following sections:
 
-1.	List of all LXC Containers Status: Display all LXC containers and their statuses (either running or stopped), disk and RAM used in a table format:
-    | Container Name | Status | Disk Used | RAM Used |
-                                               
-2.	Ollama Service (LXC 205): Check if the Ollama service is running or stopped only in LXC container 205. Display this information as a short, clear sentence or highlighted note.
-	
-3.	Docker Containers: List all Docker containers and their current status in a table format:
-    | Container Name | Status |
-     
-4.	System Temperatures: Show the temperature of the CPU, HDD, and GPU in a table format:
-    | Component | Temperature | Celsius | Is it OK? (If so, green, then red) |
-    Take into consideration the following thresholds:
-    CPU:
-    - 35-55°C: Idle - Typical for well-ventilated systems.
-    - 70-85°C: Under Load - Normal under sustained CPU use.
-    - 85-95°C: Hot - Acceptable short bursts, but monitor.
-    - 95-100°C: Critical - May trigger thermal throttling or shutdown.
-    
-    GPU:
-    - 30-50°C: Idle - Normal desktop state.
-    - 60-80°C: Gamming/Load - Normal under load.
-    - 80-90°C: High - Still safe, but worth watching.
-    - >90°C: Critical - Thermal throttling starts around 92 and 95°C.
+You are a Linux systems assistant. Analyze the provided Proxmox LXC container report and generate a full HTML summary page with the following:
 
-    HDD:
-    - 30-45°C: Idle - Cool and normal.
-    - 45-70°C: Under Load - Acceptable during read/write bursts.
-    - >70°C: High - Might reduce performance (thermal throttle).
-    - >85°C: Critical - Risk of degradation over time.                                 
+1. Use a clean HTML structure with inline styles only (no external CSS or JavaScript).
+2. The final page title must be: <title>PSM Server Report Summary</title>.
+3. Use consistent <h2> or <h3> headers for each section.
+4. Always use <table> with <thead> and <tbody> for tabular data.
+5. Avoid including any section if no data is found for it.
+6. Use semantic, valid HTML only.
 
-Ensure the final output is a clean, readable HTML document with inline styles for table formatting. Avoid external CSS or JavaScript.
+Your summary must include the following sections:
 
-Report:
+---
+
+📦 1. List of all LXC Containers:
+
+Display the container name, status (Running/Stopped), disk used, and RAM used. Format as a table:
+
+| Container Name | Status | Disk Used | RAM Used |
+
+Disk and RAM can be extracted from lines like:
+   ➜ /dev/loop0 1.1G used of 8.5G (13% mounted on /)
+   🔹 RAM Usage: 830Mi / 2.0Gi (40% used)
+
+---
+
+⚙️ 2. Ollama Service (LXC 205):
+
+Extract and show a one-line sentence if ollama.service is:
+- active ✅
+- inactive ⚠️
+- not found ❌
+
+Highlight the result with bold or colored span.
+
+---
+
+🐳 3. Docker Containers:
+
+List all Docker containers that are found inside LXC containers. Table format:
+
+| Container Name | Status |
+
+Extract lines like:
+   ➜ myservice (Up 3 hours)
+   ➜ postgres (Exited)
+
+Ignore containers that don't have Docker installed.
+
+---
+
+🌡️ 4. System Temperatures:
+
+Extract temperatures from these lines:
+   🌡️ CPU Temperature (Tctl): 57.5°C
+   📀 NVMe Temperature: 48.0°C
+   🌡️ Temperature: 70°C (GPU)
+
+Compare them against thresholds below and classify each one with a "Status" column:
+
+| Component | Temperature | Celsius | Status (OK/Warning/Critical) |
+
+Use colored spans in Status:
+- `<span style="color:green">OK</span>`
+- `<span style="color:orange">Warning</span>`
+- `<span style="color:red">Critical</span>`
+
+**Thresholds:**
+- CPU:
+  - Idle: 35-55°C → OK
+  - Load: 70-85°C → OK
+  - Hot: 85-95°C → Warning
+  - Critical: >95°C → Critical
+
+- GPU:
+  - Idle: 30-50°C → OK
+  - Load: 60-80°C → OK
+  - High: 80-90°C → Warning
+  - Critical: >90°C → Critical
+
+- HDD:
+  - Idle: 30-45°C → OK
+  - Load: 45-70°C → OK
+  - High: >70°C → Warning
+  - Critical: >85°C → Critical
+
+---
+
 {raw_status}
 """)
 
-llm = ChatOpenAI(model="gpt-4", temperature=0)
+llm = ChatOpenAI(model="gpt-4o", temperature=0)
 chain = prompt_template | llm
 html_summary = chain.invoke({"raw_status": raw_status}).content
 
