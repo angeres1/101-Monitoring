@@ -195,8 +195,11 @@ cert_section = cert_section.encode("utf-8", "replace").decode("utf-8")
 
 html_summary = chain.invoke({
     "raw_status": raw_status,
-    "cert_section": cert_section
+    "cert_section": ""
 }).content
+
+# Manually append cert block
+html_summary += "\n\n" + cert_section
 
 logging.info("\u2705 Summary generated.")
 
