@@ -183,9 +183,9 @@ Use colored spans in Status:
 {cert_section}
 """)
 
-print("=== CERT SECTION PREVIEW ===")
-print(cert_section)
-print("============================")
+#print("=== CERT SECTION PREVIEW ===")
+#print(cert_section)
+#print("============================")
 
 llm = ChatOpenAI(model="gpt-4o", temperature=0)
 chain = prompt_template | llm
@@ -201,8 +201,8 @@ html_summary = chain.invoke({
 # Manually append cert block
 html_summary += "\n\n" + cert_section
 
-with open("/app/monitoring/html_debug_out.html", "w", encoding="utf-8") as f:
-    f.write(html_summary)
+#with open("/app/monitoring/html_debug_out.html", "w", encoding="utf-8") as f:
+#    f.write(html_summary)
 
 logging.info("\u2705 Summary generated.")
 
