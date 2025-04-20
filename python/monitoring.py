@@ -49,7 +49,7 @@ You are a Linux systems assistant. Analyze the provided Proxmox LXC container re
 	•	Structure the HTML content with the following sections:
 
 1.	LXC Containers Status: Display all LXC containers and their status (either running or stopped) in a table format:
-    | Container Name | Status | Disk Utilization | Disk Size | Disk Used | Disk Free | RAM Utilization | RAM Size | RAM Used | RAM Free |
+    | Container Name | Status | Disk Used | RAM Used |
                                                
 2.	Ollama Service (LXC 205): Check if the Ollama service is running or stopped only in LXC container 205. Display this information as a short, clear sentence or highlighted note.
 	
