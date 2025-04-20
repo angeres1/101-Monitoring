@@ -102,77 +102,77 @@ Your summary must include the following sections:
 
 ---
 
-\ud83d\udce6 1. List of all LXC Containers:
+📦 1. List of all LXC Containers:
 
 Display the container name, status (Running/Stopped), disk used, and RAM used. Format as a table:
 
 | Container Name | Status | Disk Used | RAM Used |
 
 Disk and RAM can be extracted from lines like:
-   \u279c /dev/loop0 1.1G used of 8.5G (13% mounted on /)
-   \ud83d\udd39 RAM Usage: 830Mi / 2.0Gi (40% used)
+   ➜ /dev/loop0 1.1G used of 8.5G (13% mounted on /)
+   🔹 RAM Usage: 830Mi / 2.0Gi (40% used)
 
 ---
 
-\u2699\ufe0f 2. Ollama Service (LXC 205):
+⚙️ 2. Ollama Service (LXC 205):
 
 Extract and show a one-line sentence if ollama.service is:
-- active \u2705
-- inactive \u26a0\ufe0f
-- not found \u274c
+- active ✅
+- inactive ⚠️
+- not found ❌
 
 Highlight the result with bold or colored span.
 
 ---
 
-\ud83d\udc33 3. Docker Containers:
+🐳 3. Docker Containers:
 
 List all Docker containers that are found inside LXC containers. Table format:
 
 | Container Name | Status |
 
 Extract lines like:
-   \u279c myservice (Up 3 hours)
-   \u279c postgres (Exited)
+   ➜ myservice (Up 3 hours)
+   ➜ postgres (Exited)
 
 Ignore containers that don't have Docker installed.
 
 ---
 
-\ud83c\udf21\ufe0f 4. System Temperatures:
+🌡️ 4. System Temperatures:
 
 Extract temperatures from these lines:
-   \ud83c\udf21\ufe0f CPU Temperature (Tctl): 57.5\u00b0C
-   \ud83d\udcc0 NVMe Temperature: 48.0\u00b0C
-   \ud83c\udf21\ufe0f Temperature: 70\u00b0C (GPU)
+   🌡️ CPU Temperature (Tctl): 57.5°C
+   📀 NVMe Temperature: 48.0°C
+   🌡️ Temperature: 70°C (GPU)
 
 Compare them against thresholds below and classify each one with a "Status" column:
 
 | Component | Temperature | Celsius | Status (OK/Warning/Critical) |
 
 Use colored spans in Status:
-- `<span style=\"color:green\">OK</span>`
-- `<span style=\"color:orange\">Warning</span>`
-- `<span style=\"color:red\">Critical</span>`
+- `<span style="color:green">OK</span>`
+- `<span style="color:orange">Warning</span>`
+- `<span style="color:red">Critical</span>`
 
 **Thresholds:**
 - CPU:
-  - Idle: 35-55\u00b0C \u2192 OK
-  - Load: 70-85\u00b0C \u2192 OK
-  - Hot: 85-95\u00b0C \u2192 Warning
-  - Critical: >95\u00b0C \u2192 Critical
+  - Idle: 35-55°C → OK
+  - Load: 70-85°C → OK
+  - Hot: 85-95°C → Warning
+  - Critical: >95°C → Critical
 
 - GPU:
-  - Idle: 30-50\u00b0C \u2192 OK
-  - Load: 60-80\u00b0C \u2192 OK
-  - High: 80-90\u00b0C \u2192 Warning
-  - Critical: >90\u00b0C \u2192 Critical
+  - Idle: 30-50°C → OK
+  - Load: 60-80°C → OK
+  - High: 80-90°C → Warning
+  - Critical: >90°C → Critical
 
 - HDD:
-  - Idle: 30-45\u00b0C \u2192 OK
-  - Load: 45-70\u00b0C \u2192 OK
-  - High: >70\u00b0C \u2192 Warning
-  - Critical: >85\u00b0C \u2192 Critical
+  - Idle: 30-45°C → OK
+  - Load: 45-70°C → OK
+  - High: >70°C → Warning
+  - Critical: >85°C → Critical
 
 ---
 
