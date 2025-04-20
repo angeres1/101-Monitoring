@@ -182,6 +182,10 @@ Use colored spans in Status:
 {cert_section}
 """)
 
+print("=== CERT SECTION PREVIEW ===")
+print(cert_section)
+print("============================")
+
 llm = ChatOpenAI(model="gpt-4o", temperature=0)
 chain = prompt_template | llm
 
