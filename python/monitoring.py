@@ -64,7 +64,7 @@ def get_cert_expiration_html(cert_map):
             html_rows += f"<tr><td>{domain}</td><td colspan='3' style='color:red;'>Error: {e}</td></tr>\n"
 
     return f"""
-    <h2>\ud83d\udd10 Let's Encrypt Certificates</h2>
+    <h2>&#128274; Let's Encrypt Certificates</h2>  <!-- HTML Unicode for 🔒 -->
     <table border=\"1\" cellspacing=\"0\" cellpadding=\"6\">
         <thead>
             <tr><th>Domain</th><th>Expires On</th><th>Days Left</th><th>Status</th></tr>
