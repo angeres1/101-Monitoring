@@ -48,6 +48,7 @@ You are a Linux systems assistant. Analyze this Proxmox LXC container report and
 3. Which services, like Ollama, and their names are running or stopped?
 4. Are there any services and their names not running or missing in any LCX?
 5. Are any Docker containers and their names down in any LCX?
+6. Are the temperatures of the hardware devices normal? 
 
 Report:
 {raw_status}
