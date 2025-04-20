@@ -3,6 +3,7 @@ import smtplib
 import logging
 import subprocess
 from datetime import datetime
+from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
@@ -193,11 +194,11 @@ logging.info("\u2705 Summary generated.")
 
 # === 5. Email ===
 msg = MIMEMultipart()
-msg["Subject"] = "\ud83d\udcca Daily PSM Server Executive Report"
+msg["Subject"] = Header("📊 Daily PSM Server Executive Report", "utf-8")
 msg["From"] = smtp_user
 msg["To"] = smtp_user
 
-msg.attach(MIMEText(html_summary, "html"))
+msg.attach(MIMEText(html_summary, "html", "utf-8"))
 
 with open(file_path, "rb") as f:
     attachment = MIMEApplication(f.read(), _subtype="txt")
