@@ -84,6 +84,7 @@ cert_map = {
 }
 
 cert_section = get_cert_expiration_html(cert_map)
+cert_section = cert_section.encode("utf-8", "replace").decode("utf-8")
 
 # === 5. Summary generation with ChatGPT ===
 os.environ["OPENAI_API_KEY"] = openai_api_key
