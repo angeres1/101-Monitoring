@@ -201,6 +201,9 @@ html_summary = chain.invoke({
 # Manually append cert block
 html_summary += "\n\n" + cert_section
 
+with open("/app/monitoring/html_debug_out.html", "w", encoding="utf-8") as f:
+    f.write(html_summary)
+
 logging.info("\u2705 Summary generated.")
 
 # === 5. Email ===
