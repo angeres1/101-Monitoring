@@ -43,31 +43,23 @@ os.environ["OPENAI_API_KEY"] = openai_api_key  # Make it compatible with LangCha
 prompt_template = PromptTemplate.from_template("""
                                                
 You are a Linux systems assistant. Analyze the provided Proxmox LXC container report and generate an HTML summary page with the following specifications:
+                                               
 	•	The page title must be “PSM Server Report Summary”.
 	•	Use clean, valid HTML with basic inline CSS styling for readability (e.g., table borders, padding, bold headers).
 	•	Structure the HTML content with the following sections:
 
-	1.	LXC Containers Status
-Display all LXC containers and their status (either running or stopped) in a table format:
-| Container Name | Status |
-	2.	Ollama Service (LXC 205)
-Check if the Ollama service is running or stopped only in LXC container 205. Display this information as a short, clear sentence or highlighted note.
-	3.	Docker Containers
-List all Docker containers and their current status in a table format:
-| Container Name | Status |
-	4.	System Temperatures
-Show the temperature of the CPU, HDD, and GPU in a table format:
-| Component | Temperature |
-	5.	Resource Usage
-Present usage data in the following tables (each in this format: | Component | Usage |):
-	•	CPU and Memory usage
-	•	Disk usage
-	•	Network usage
-	6.	Server Uptime
-Display the server’s uptime in a table format:
-| Component | Uptime |
+1.	LXC Containers Status: Display all LXC containers and their status (either running or stopped) in a table format:
+    | Container Name | Status |
+                                               
+2.	Ollama Service (LXC 205): Check if the Ollama service is running or stopped only in LXC container 205. Display this information as a short, clear sentence or highlighted note.
+	
+3.	Docker Containers: List all Docker containers and their current status in a table format:
+    | Container Name | Status |
 
-	•	Ensure the final output is a clean, readable HTML document with inline styles for table formatting. Avoid external CSS or JavaScript.
+4.	System Temperatures: Show the temperature of the CPU, HDD, and GPU in a table format:
+    | Component | Temperature | Celsius | Is it OK? (If so, green, then red) |
+
+Ensure the final output is a clean, readable HTML document with inline styles for table formatting. Avoid external CSS or JavaScript.
 
 Report:
 {raw_status}
