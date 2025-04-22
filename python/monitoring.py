@@ -81,6 +81,7 @@ cert_map = {
     "ollama-ui.psmsquad.com": "/mnt/certs/live/npm-33/fullchain.pem",
     "home.psmsquad.com": "/mnt/certs/live/npm-31/fullchain.pem",
     "proxmox.psmsquad.com": "/mnt/certs/live/npm-25/fullchain.pem"
+    "cloud.psmsquad.com": "/mnt/certs/live/npm-34/fullchain.pem"
 }
 
 cert_section = get_cert_expiration_html(cert_map)
