@@ -176,6 +176,9 @@ Use colored spans in Status:
   - Load: 45-70°C → OK
   - High: >70°C → Warning
   - Critical: >85°C → Critical
+                                               
+🏡 5. Home Assistant Status (VM 130):
+Extract and display RAM, Uptime, Disk Usage, and Core Version from the text.
 
 ---
 
