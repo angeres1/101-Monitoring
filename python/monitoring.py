@@ -227,31 +227,24 @@ email_html = f"""
 # === 5. Email ===
 # 1. Create the message
 msg = EmailMessage()
-msg['Subject'] = "📊 Daily PSM Server Executive Report"
-msg['From'] = smtp_user
-msg['To']   = smtp_user
+msg["Subject"] = "📊 Daily PSM Server Executive Report"
+msg["From"]    = smtp_user
+msg["To"]      = smtp_user
 
-# 2. Add plain-text fallback
-plain_text = "This is your daily PSM Server report. If you do not see HTML, please view the attached report or enable HTML view."
-msg.set_content(plain_text)
+# 1️⃣ Plain-text fallback
+msg.set_content("This is your daily PSM Server report. View in HTML-capable client for full formatting.")
 
-# 3. Add the HTML version
-#    EmailMessage.add_alternative will automatically nest this under a multipart/alternative
-msg.add_alternative(email_html, subtype='html')
+# 2️⃣ HTML alternative
+msg.add_alternative(email_html, subtype="html")
 
-# 4. Attach your .txt file
+# 3️⃣ Attachment
 report_path = "/app/lxc-qm-reports/lxc_qm_status_report.txt"
 with open(report_path, "rb") as f:
-    file_data = f.read()
-    file_name = os.path.basename(report_path)
-
-# for a plain-text attachment:
-msg.add_attachment(
-    file_data,
-    maintype='text',
-    subtype='plain',
-    filename=file_name
-)
+    data = f.read()
+msg.add_attachment(data,
+                   maintype="text",
+                   subtype="plain",
+                   filename=os.path.basename(report_path))
 
 # === 6. Send emil via SMTP ===
 try:
