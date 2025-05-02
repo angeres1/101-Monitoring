@@ -253,7 +253,8 @@ email_html = f"""
 msg = EmailMessage()
 msg["Subject"] = "📊 Daily PSM Server Executive Report"
 msg["From"]    = smtp_user
-msg["To"]      = smtp_user
+recipients = [smtp_user, "aleja.als@gmail.com"]
+msg["To"] = ", ".join(recipients)
 
 msg.set_content(
     "This is your daily PSM Server report.\n"
