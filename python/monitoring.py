@@ -239,11 +239,17 @@ msg["To"]      = smtp_user
 
 msg.set_content(
     "This is your daily PSM Server report.\n"
-    "If you do not see a formatted report, please view the HTML version."
+    "If you do not see a formatted report, please view the HTML version.",
+    subtype="plain",
+    charset="utf-8"
 )
 
 # 2️⃣ HTML alternative
-msg.add_alternative(email_html, subtype="html")
+msg.add_alternative(
+    email_html,
+    subtype="html",
+    charset="utf-8"
+)
 
 logging.debug("Email MIME payload:\n%s", msg.as_string())
 
