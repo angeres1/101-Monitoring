@@ -224,21 +224,21 @@ email_html = f"""
 """
 
 # === 5. Email ===
-# Outer message supports attachments
+# Outer message
 msg = MIMEMultipart("mixed")
 msg["Subject"] = Header("📊 Daily PSM Server Executive Report", "utf-8")
 msg["From"] = smtp_user
 msg["To"] = smtp_user
 
-# Create alternative part for plain + html
-alt_part = MIMEMultipart("alternative")
-alt_part.attach(MIMEText("This is the daily PSM server report summary. Please view in HTML.", "plain", "utf-8"))
-alt_part.attach(MIMEText(email_html, "html", "utf-8"))
+# Alternative part with text and HTML (correct order matters)
+alt = MIMEMultipart("alternative")
+alt.attach(MIMEText("This is the daily PSM server report summary. Please view in HTML.", "plain", "utf-8"))
+alt.attach(MIMEText(email_html, "html", "utf-8"))
 
-# Attach alternative body to main message
-msg.attach(alt_part)
+# Attach the body
+msg.attach(alt)
 
-# Add .txt attachment
+# Add the .txt attachment after body
 with open(file_path, "rb") as f:
     attachment = MIMEApplication(f.read(), _subtype="txt")
     attachment.add_header("Content-Disposition", "attachment", filename="lxc_qm_status_report.txt")
