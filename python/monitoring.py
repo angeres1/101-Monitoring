@@ -242,7 +242,7 @@ email_html = f"""
   <body>
     <!-- Visible notice for HTML clients -->
     <p>This is your daily PSM Server report.<br>
-    If parts don’t display correctly, please enable HTML view.</p>
+    (If parts don’t display correctly, please enable HTML view).</p>
     {html_summary}
   </body>
 </html>
