@@ -183,6 +183,11 @@ Use colored spans in Status:
 Extract and display RAM, Uptime, Disk Usage, and Core Version from the text.
 
 ---
+                                               
+💽 6. Host disk Usage:
+Extract and display the usage, total and the percentage of the disk host information.
+
+---
 
 {raw_status}
 
