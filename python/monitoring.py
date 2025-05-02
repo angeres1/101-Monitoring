@@ -18,7 +18,7 @@ smtp_user = os.getenv("EMAIL_USER")
 smtp_password = os.getenv("EMAIL_PASSWORD")
 
 # === 2. Configure logging in persistant file ===
-log_path = "/var/log/lxc_report.log"
+log_path = "/var/log/lxc_qm_report.log"
 logging.basicConfig(
     filename=log_path,
     level=logging.INFO,
@@ -31,7 +31,7 @@ logging.info("")
 logging.info("===== 🕒 New Daily Execution: %s =====", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 # === 3. Load the original report ===
-file_path = "/app/lxc-reports/lxc_status_report.txt"
+file_path = "/app/lxc-qm-reports/lxc_qm_status_report.txt"
 if not os.path.exists(file_path):
     logging.error("\ud83d\udeab Report file not found. Email skipped.")
     exit(1)
@@ -202,6 +202,9 @@ html_summary = chain.invoke({
     "cert_section": ""
 }).content
 
+# 🔧 Clean up Markdown-style block tags
+html_summary = html_summary.replace("```", "").strip()
+
 # Manually append cert block
 html_summary += "\n\n" + cert_section
 
@@ -220,7 +223,7 @@ msg.attach(MIMEText(html_summary, "html", "utf-8"))
 
 with open(file_path, "rb") as f:
     attachment = MIMEApplication(f.read(), _subtype="txt")
-    attachment.add_header("Content-Disposition", "attachment", filename="lxc_status_report.txt")
+    attachment.add_header("Content-Disposition", "attachment", filename="lxc_qm_status_report.txt")
     msg.attach(attachment)
 
 # === 6. Send emil via SMTP ===
