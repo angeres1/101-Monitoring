@@ -240,7 +240,7 @@ msg.set_content(plain_text)
 msg.add_alternative(email_html, subtype='html')
 
 # 4. Attach your .txt file
-report_path = "/app/monitoring/lxc_qm_status_report.txt"
+report_path = "/app/monitoring/lxc-qm-reports/lxc_qm_status_report.txt"
 with open(report_path, "rb") as f:
     file_data = f.read()
     file_name = os.path.basename(report_path)
