@@ -213,12 +213,7 @@ html_summary += "\n\n" + cert_section
 
 logging.info("\u2705 Summary generated.")
 
-# === 5. Email ===
-msg = MIMEMultipart()
-msg["Subject"] = Header("📊 Daily PSM Server Executive Report", "utf-8")
-msg["From"] = smtp_user
-msg["To"] = smtp_user
-
+# Wrap the summary in full HTML
 email_html = f"""
 <html>
   <head><meta charset="UTF-8"><title>PSM Server Report</title></head>
@@ -227,7 +222,16 @@ email_html = f"""
   </body>
 </html>
 """
-msg.attach(MIMEText(email_html, "html", "utf-8"))
+
+# === 5. Email ===
+msg = MIMEMultipart()
+msg["Subject"] = Header("📊 Daily PSM Server Executive Report", "utf-8")
+msg["From"] = smtp_user
+msg["To"] = smtp_user
+
+html_part = MIMEText(email_html, "html", "utf-8")
+html_part.add_header("Content-Disposition", "inline")
+msg.attach(html_part)
 
 with open(file_path, "rb") as f:
     attachment = MIMEApplication(f.read(), _subtype="txt")
