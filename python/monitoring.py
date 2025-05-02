@@ -231,6 +231,8 @@ msg["To"] = smtp_user
 
 html_part = MIMEText(email_html, "html", "utf-8")
 html_part.add_header("Content-Disposition", "inline")
+text_part = MIMEText("This is the daily PSM server report summary. Please view in HTML.", "plain", "utf-8")
+msg.attach(text_part)
 msg.attach(html_part)
 
 with open(file_path, "rb") as f:
