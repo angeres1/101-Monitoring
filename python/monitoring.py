@@ -223,7 +223,22 @@ logging.info("\u2705 Summary generated.")
 # Wrap the summary in full HTML
 email_html = f"""
 <html>
-  <head><meta charset="UTF-8"><title>PSM Server Report</title></head>
+  <head>
+    <meta charset="UTF-8">
+    <title>PSM Server Report</title>
+    <style>
+      table {{
+        width: auto !important;
+        table-layout: auto !important;
+        border-collapse: collapse;
+      }}
+      th, td {{
+        padding: 4px 8px;
+        white-space: nowrap;
+        border: 1px solid #ccc;
+      }}
+    </style>
+  </head>
   <body>
     <!-- Visible notice for HTML clients -->
     <p>This is your daily PSM Server report.<br>
