@@ -2,6 +2,7 @@ import os
 import smtplib
 import logging
 import subprocess
+import re
 from datetime import datetime
 from email.header import Header
 from email.message import EmailMessage
@@ -203,7 +204,12 @@ html_summary = chain.invoke({
     "cert_section": ""
 }).content
 
-# 🔧 Clean up Markdown-style block tags
+# 🔧 Clean up Markdown-style block tags and remove stray leading 'html'
+# Remove any opening ``` or ```html
+html_summary = re.sub(r'^```(?:html)?\s*', '', html_summary, flags=re.IGNORECASE)
+# Remove a leading "html" on its own line (from leftover code-fence labels)
+html_summary = re.sub(r'^\s*html\s*\n', '', html_summary, flags=re.IGNORECASE)
+# Remove any remaining fences and trim whitespace
 html_summary = html_summary.replace("```", "").strip()
 
 # Manually append cert block
