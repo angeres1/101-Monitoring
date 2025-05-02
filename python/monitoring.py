@@ -219,7 +219,15 @@ msg["Subject"] = Header("📊 Daily PSM Server Executive Report", "utf-8")
 msg["From"] = smtp_user
 msg["To"] = smtp_user
 
-msg.attach(MIMEText(html_summary, "html", "utf-8"))
+email_html = f"""
+<html>
+  <head><meta charset="UTF-8"><title>PSM Server Report</title></head>
+  <body>
+    {html_summary}
+  </body>
+</html>
+"""
+msg.attach(MIMEText(email_html, "html", "utf-8"))
 
 with open(file_path, "rb") as f:
     attachment = MIMEApplication(f.read(), _subtype="txt")
