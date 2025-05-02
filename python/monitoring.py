@@ -4,6 +4,7 @@ import logging
 import subprocess
 from datetime import datetime
 from email.header import Header
+from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
@@ -224,25 +225,33 @@ email_html = f"""
 """
 
 # === 5. Email ===
-# Outer message
-msg = MIMEMultipart("mixed")
-msg["Subject"] = Header("📊 Daily PSM Server Executive Report", "utf-8")
-msg["From"] = smtp_user
-msg["To"] = smtp_user
+# 1. Create the message
+msg = EmailMessage()
+msg['Subject'] = "📊 Daily PSM Server Executive Report"
+msg['From'] = smtp_user
+msg['To']   = smtp_user
 
-# Alternative part with text and HTML (correct order matters)
-alt = MIMEMultipart("alternative")
-alt.attach(MIMEText("This is the daily PSM server report summary. Please view in HTML.", "plain", "utf-8"))
-alt.attach(MIMEText(email_html, "html", "utf-8"))
+# 2. Add plain-text fallback
+plain_text = "This is your daily PSM Server report. If you do not see HTML, please view the attached report or enable HTML view."
+msg.set_content(plain_text)
 
-# Attach the body
-msg.attach(alt)
+# 3. Add the HTML version
+#    EmailMessage.add_alternative will automatically nest this under a multipart/alternative
+msg.add_alternative(email_html, subtype='html')
 
-# Add the .txt attachment after body
-with open(file_path, "rb") as f:
-    attachment = MIMEApplication(f.read(), _subtype="txt")
-    attachment.add_header("Content-Disposition", "attachment", filename="lxc_qm_status_report.txt")
-    msg.attach(attachment)
+# 4. Attach your .txt file
+report_path = "/app/monitoring/lxc_qm_status_report.txt"
+with open(report_path, "rb") as f:
+    file_data = f.read()
+    file_name = os.path.basename(report_path)
+
+# for a plain-text attachment:
+msg.add_attachment(
+    file_data,
+    maintype='text',
+    subtype='plain',
+    filename=file_name
+)
 
 # === 6. Send emil via SMTP ===
 try:
