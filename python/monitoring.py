@@ -225,6 +225,9 @@ email_html = f"""
 <html>
   <head><meta charset="UTF-8"><title>PSM Server Report</title></head>
   <body>
+    <!-- Visible notice for HTML clients -->
+    <p>This is your daily PSM Server report.<br>
+    If parts don’t display correctly, please enable HTML view.</p>
     {html_summary}
   </body>
 </html>
