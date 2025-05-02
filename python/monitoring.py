@@ -224,7 +224,7 @@ email_html = f"""
 """
 
 # === 5. Email ===
-msg = MIMEMultipart()
+msg = MIMEMultipart("alternative")
 msg["Subject"] = Header("📊 Daily PSM Server Executive Report", "utf-8")
 msg["From"] = smtp_user
 msg["To"] = smtp_user
