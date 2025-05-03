@@ -11,7 +11,7 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 
 # === 1. Load variables from .env ===
-load_dotenv("/app/monitoring/.env")
+load_dotenv("/root/monitoring/.env")
 openai_api_key = os.getenv("OPENAI_API_KEY")
 smtp_user = os.getenv("EMAIL_USER")
 smtp_password = os.getenv("EMAIL_PASSWORD")
