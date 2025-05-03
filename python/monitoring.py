@@ -33,7 +33,7 @@ logging.info("")
 logging.info("===== 🕒 New Daily Execution: %s =====", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 # === 3. Load the original report ===
-file_path = "/app/lxc-qm-reports/lxc_qm_status_report.txt"
+file_path = "/root/lxc-qm-reports/lxc_qm_status_report.txt"
 if not os.path.exists(file_path):
     logging.error("\ud83d\udeab Report file not found. Email skipped.")
     exit(1)
