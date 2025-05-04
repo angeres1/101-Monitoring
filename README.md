@@ -31,21 +31,30 @@ This repository contains the monitoring logic for the PSM Homelab running on Pro
 ## 🛠️ Setup Instructions
 
 1. Create a `.env` file using `.env.example`:
+   ```
    env
    OPENAI_API_KEY=your-key
    EMAIL_USER=you@gmail.com
    EMAIL_PASSWORD=your-app-password
+   ```
 
 2. Install dependencies:
+   ```
    bash
    pip3 install langchain openai
+   ```
 
 3. Add the script to your crontab (inside LXC 101):
+   ```
    bash
    crontab -e
+   ```
 
+   ```
    cron
    15 6 * * * python3 /root/monitoring/python/monitoring.py >> /var/log/monitoring-cron.log 2>&1
+   ```
+   
 
 4. (Optional) Check the log:
    Full: cat /var/log/monitoring-cron.log
