@@ -13,10 +13,12 @@ This repository contains the monitoring logic for the PSM Homelab running on Pro
 ## 📁 Structure
 
 ```
-101 monitoring/
-├── monitoring.py          # Main monitoring script
-├── .env.example           # Environment file template for API/email credentials
-└── lxc_status_report.txt  # Generated report file (excluded from Git)
+101 root/monitoring
+├── python
+   └── monitoring.py          # Main monitoring script
+├── .env.example              # Environment file template for API/email credentials
+├── lxc-qm-reports
+   └── lxc_status_report.txt  # Generated report file (excluded from Git)
 ```
 
 ## ⚙️ Technologies
@@ -57,11 +59,11 @@ This repository contains the monitoring logic for the PSM Homelab running on Pro
 ## 📡 Runtime
 
 - LXC ID: `101`
-- IP Address: `192.168.10.31`
-- Hostname: `monitoring`
-- Python script path: `/app/PSM-Squad/repository/monitoring/monitoring.py`
+- IP Address: `192.168.10.11`
+- Hostname: `ct-monitoring`
+- Python script path: `/root/monitoring/python/monitoring.py`
 
 ## 🔗 Related Projects
 
-- [203-StartPage](https://github.com/angeres1/203-StartPage)
+- [201-StartPage](https://github.com/angeres1/201-StartPage)
 - [PSM-Squad](https://github.com/angeres1/PSM-Squad) – Core homelab documentation
