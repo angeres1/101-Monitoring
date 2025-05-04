@@ -54,12 +54,14 @@ This repository contains the monitoring logic for the PSM Homelab running on Pro
    cron
    15 6 * * * python3 /root/monitoring/python/monitoring.py >> /var/log/monitoring-cron.log 2>&1
    ```
-   
+
 
 4. (Optional) Check the log:
+   ```
    Full: cat /var/log/monitoring-cron.log
    Latest: tail -n 30 /var/log/monitoring-cron.log
    Real Time: tail -f /var/log/monitoring-cron.log
+   ```
 
 ## 📡 Runtime
 
