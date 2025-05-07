@@ -71,6 +71,9 @@ Show RAM, Uptime, Disk Usage, and Core Version.
 
 💽 6. Host disk Usage:
 Show disk usage summary for root.
+                                               
+🔒 7. Tailscale VPN Status:
+Show status of Tailscale VPN connection.
 
 ---
 
