@@ -71,6 +71,7 @@ Show RAM, Uptime, Disk Usage, and Core Version.
                                                
 🏡 6. PSM AI SERVER (VM 302):
 Show status of containers psmfrigate, psmollama and psmopenwebui.
+Show RAM, Uptime, Disk Usage, and Core Version.
 
 💽 7. Host disk Usage:
 Show disk usage summary for root.
