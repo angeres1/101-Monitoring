@@ -70,8 +70,7 @@ Table of CPU, GPU, and NVMe with thresholds and status coloring.
 Show RAM, Uptime, Disk Usage, and Core Version.
                                                
 🏡 6. PSM AI SERVER (VM 302):
-Show status of containers psmfrigate, psmollama and psmopenwebui.
-Show RAM, Uptime, Disk Usage, and Core Version.
+Show RAM, Uptime, Disk Usage and status of containers psmfrigate, psmollama and psmopenwebui.
 
 💽 7. Host disk Usage:
 Show disk usage summary for root.
