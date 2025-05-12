@@ -66,13 +66,16 @@ Table of containers with name and status.
 🌡️ 4. System Temperatures:
 Table of CPU, GPU, and NVMe with thresholds and status coloring.
 
-🏡 5. Home Assistant Status (VM 130):
+🏡 5. Home Assistant Status (VM 301):
 Show RAM, Uptime, Disk Usage, and Core Version.
+                                               
+🏡 6. PSM AI SERVER (VM 302):
+Show status of containers psmfrigate, psmollama and psmopenwebui.
 
-💽 6. Host disk Usage:
+💽 7. Host disk Usage:
 Show disk usage summary for root.
                                                
-🔒 7. Tailscale VPN Status:
+🔒 8. Tailscale VPN Status:
 Show status of Tailscale VPN connection.
 
 ---
