@@ -54,30 +54,29 @@ You are a Linux systems assistant. Analyze the provided Proxmox LXC container re
 
 Your summary must include the following sections:
 
-📦 1. List of all LXC Containers:
-Display the container name, status (Running/Stopped), disk used, and RAM used. Format as a table.
-
-⚙️ 2. Ollama Service (LXC 205):
-Show one-line status (active ✅, inactive ⚠️, not found ❌).
-
-🐳 3. Docker Containers:
-Table of containers with name and status.
-
-🌡️ 4. System Temperatures:
-Table of CPU, GPU, and NVMe with thresholds and status coloring.
-
+💻 1. PSM Host Hardware Summary
+Show CPU, RAM, Disk Usage, and Uptime.
+                                               
+🎮 2. NVIDIA GPU Info
+Show GPU name, memory, and utilization.
+                                                                                                                                       
+🔒 3. Tailscale VPN Status:
+Show status of Tailscale VPN connection.
+                                               
+🧠 4. PSM AI SERVER (VM 302):
+Show RAM, Uptime, Disk Usage and status of containers psmfrigate, psmollama and psmopenwebui.
+                                               
 🏡 5. Home Assistant Status (VM 301):
 Show RAM, Uptime, Disk Usage, and Core Version.
                                                
-🏡 6. PSM AI SERVER (VM 302):
-Show RAM, Uptime, Disk Usage and status of containers psmfrigate, psmollama and psmopenwebui.
+📦 6. List of all LXC Containers:
+Display the container name, status (Running/Stopped), disk used, and RAM used. Format as a table.
 
-💽 7. Host disk Usage:
-Show disk usage summary for root.
+🐳 7. Docker Containers:
+Table of containers with name and status.
+
+≈
                                                
-🔒 8. Tailscale VPN Status:
-Show status of Tailscale VPN connection.
-
 ---
 
 {raw_status}
