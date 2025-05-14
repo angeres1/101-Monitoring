@@ -59,20 +59,23 @@ Show CPU, RAM, Disk Usage, and Uptime.
                                                
 🎮 2. NVIDIA GPU Info
 Show GPU name, memory, and utilization.
+                                               
+🔋 3. UPS Status (APCUPSD)
+Show UPS model, status, battery percentage, load, timeleft, selftest, linev and xonbatt.
                                                                                                                                        
-🔒 3. Tailscale VPN Status:
+🔒 4. Tailscale VPN Status:
 Show status of Tailscale VPN connection.
                                                
-🧠 4. PSM AI SERVER (VM 302):
+🧠 5. PSM AI SERVER (VM 302):
 Show RAM, Uptime, Disk Usage and status of containers psmfrigate, psmollama and psmopenwebui.
                                                
-🏡 5. Home Assistant Status (VM 301):
+🏡 6. Home Assistant Status (VM 301):
 Show RAM, Uptime, Disk Usage, and Core Version.
                                                
-📦 6. List of all LXC Containers:
+📦 7. List of all LXC Containers:
 Display the container name, status (Running/Stopped), disk used, and RAM used. Format as a table.
 
-🐳 7. Docker Containers:
+🐳 8. Docker Containers:
 Table of containers with name and status.
 
 ≈
