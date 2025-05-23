@@ -60,8 +60,8 @@ Show CPU, RAM, Disk Usage, and Uptime.
 🎮 2. NVIDIA GPU Info
 Show GPU name, memory, and utilization.
                                                
-🔋 3. UPS Status (APCUPSD)
-Show UPS model, status, battery percentage, load, timeleft, selftest, linev and xonbatt.
+🔋 3. Provide UPSs Statuses (NUT)
+Show, per UPS, UPS model, status, battery percentage, load, timeleft, selftest, linev and xonbatt.
                                                                                                                                        
 🔒 4. Tailscale VPN Status:
 Show status of Tailscale VPN connection.
